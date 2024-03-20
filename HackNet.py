@@ -37,6 +37,10 @@ class Relay(Resource):
                 if magdist < 225:
                     local.append(resource)
 
+        for resource in local:
+            print(resource.colors)
+            print("yay!")
+
         return local
 
 
