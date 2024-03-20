@@ -3,6 +3,8 @@ import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 import random
 from dataclasses import dataclass
+from collections import Counter
+
 
 np.random.seed(0)
 
@@ -24,6 +26,18 @@ class Resource:
 class Relay(Resource):
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
+
+    
+    def setchannels():  
+
+        self.findlocal()
+   
+        colors = [resource.color for resource in local]
+
+        color_counts = Counter(colors)
+
+        print(color_counter)
+
 
     def findlocal(self, resources):
         # starting with local
