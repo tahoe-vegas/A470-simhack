@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import random
 
 np.random.seed(0)
 
@@ -20,6 +21,21 @@ class Relay(Resource):
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
 
+    def findlocal(self, resources):
+        # starting with local
+        for relay in relays:
+            local = []
+            for resource in resources:
+                dist = (resource.pos[0] - relay.pos[0], resource.pos[1] - relay.pos[1], resource.pos[2] - relay.pos[2])
+                distvect = np.array(dist)
+                magdist = np.linalg.norm(distvect)
+
+                if magdist < 225:
+                    local.append(resource)
+
+        return local
+
+
 class House(Resource):
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
@@ -35,6 +51,7 @@ class Phone(Resource):
 class Server(Resource):
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
+
 
 def getImage(path, zoom):
    return OffsetImage(plt.imread(path, format="png"), zoom=zoom)
@@ -150,6 +167,7 @@ for x, y in zip(px, py):
 
 # Generate Serves
 servers = []
+
 # Rural Servers
 nServers = 5
 sx = np.random.randint(5, 595, nServers)
@@ -230,4 +248,16 @@ for p in range(50, 60):
 
 ax.autoscale()
 
-plt.show()
+# plt.show()
+
+# create an array of all the resources
+resources = []
+# resources.extend(relays)
+resources.extend(houses)
+resources.extend(phones)
+resources.extend(servers)
+
+random.shuffle(resources)
+
+
+        
