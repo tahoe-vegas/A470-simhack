@@ -14,7 +14,7 @@ class Resource:
         self.TxRate = 40
         self.RxRate = 35
         self.velocity = [0, 0, 0]
-        self.connection = None
+        self.connectionTarget = None
 
 class Relay(Resource):
     def __init__(self, x, y, z):
@@ -204,29 +204,29 @@ np.random.shuffle(servers)
 
 for i in range(0, 40):
     server = servers[np.random.randint(0, 10)]
-    houses[i].connection = server
-    server.connection = houses[i]
+    houses[i].connectionTarget = server
+    server.connectionTarget = houses[i]
 
 for i, j in zip(range(40, 60), range(0, 20)):
-    houses[i].connection = phones[j]
-    phones[j].connection = houses[i]
+    houses[i].connectionTarget = phones[j]
+    phones[j].connectionTarget = houses[i]
 
 for car in cars:
     server = servers[np.random.randint(0,10)]
-    car.connection = server
-    server.connection = car
+    car.connectionTarget = server
+    server.connectionTarget = car
 
 for p in range(20, 35):
-    phones[p].connection = phones[p + 15]
-    phones[p + 15].connection = phones[p]
+    phones[p].connectionTarget = phones[p + 15]
+    phones[p + 15].connectionTarget = phones[p]
 
 for p in range(50, 60):
     server = servers[np.random.randint(0, 10)]
-    phones[p].connection = server
-    server.connection = phones[p]
+    phones[p].connectionTarget = server
+    server.connectionTarget = phones[p]
 
 #for _ in phones:
-#    ax.plot([_.pos[0], _.connection.pos[0]], [_.pos[1], _.connection.pos[1]])
+#    ax.plot([_.pos[0], _.connectionTarget.pos[0]], [_.pos[1], _.connectionTarget.pos[1]])
 
 ax.autoscale()
 
