@@ -1,10 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+from dataclasses import dataclass
 
 np.random.seed(0)
 
 #TODO Randomize other relay/user parameters
+
+
 
 colors = ['blue', 'green', 'orange', 'yellow']
 class Resource:
@@ -15,6 +18,7 @@ class Resource:
         self.RxRate = 35
         self.velocity = [0, 0, 0]
         self.connectionTarget = None
+    
 
 class Relay(Resource):
     def __init__(self, x, y, z):
@@ -36,8 +40,19 @@ class Server(Resource):
     def __init__(self, x, y, z):
         super().__init__(x, y, z)
 
+
+@dataclass
+class Connection:
+    target : Resource
+    color : str
+    tx : bool # true for transmit, false for receive
+
+
 def getImage(path, zoom):
    return OffsetImage(plt.imread(path, format="png"), zoom=zoom)
+
+
+
 
 fig, ax = plt.subplots()
 
