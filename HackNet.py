@@ -144,7 +144,7 @@ for x, y in zip(px, py):
      phone.RxRate = np.random.choice([.5, 1, 2], 1) # Scroller, Navigator, Streamer
      phone.TxRate = np.random.choice([.5, 1], 1) # Navigator, Scroller
      phone.velocity =  np.random.rand(1, 2)*2 # 5 is max speed
-     phones.append(Phone(x, y, 0))
+     phones.append(phone)
      ab = AnnotationBbox(getImage(path, .2), (x, y), frameon=False)
      ax.add_artist(ab)
 
@@ -175,7 +175,7 @@ for x, y in zip(sx, sy):
      server.TxRate = 100
      server.RxRate = 30
      server.velocity = [0, 0, 0]
-     servers.append(Server(x, y, 0))
+     servers.append(server)
      ab = AnnotationBbox(getImage(path, .3), (x, y), frameon=False)
      ax.add_artist(ab)
 
