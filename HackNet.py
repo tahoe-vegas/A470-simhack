@@ -21,6 +21,7 @@ class Resource:
         self.RxRate = 35
         self.velocity = [0, 0, 0]
         self.connectionTarget = None
+        self.connection = None 
     
 
 class Relay(Resource):
@@ -278,9 +279,13 @@ for p in range(50, 60):
 #for _ in phones:
 #    ax.plot([_.pos[0], _.connectionTarget.pos[0]], [_.pos[1], _.connectionTarget.pos[1]])
 
-ax.autoscale()
+# ax.autoscale()
 
 # plt.show()
+    
+# for relay in relays:
+    local = relay.findlocal(resources)
+    relay.setChannels()
 
 # create an array of all the resources
 resources = []
